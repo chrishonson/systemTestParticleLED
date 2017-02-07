@@ -84,7 +84,7 @@ public class LoginFragment extends Fragment {
                     public Object callApi(ParticleCloud sparkCloud) throws ParticleCloudException, IOException {
                         sparkCloud.logIn(email, password);
                         sparkCloud.getDevices();
-                        mDevice = sparkCloud.getDevice("1f0034000747343232361234");
+                        mDevice = sparkCloud.getDevice("280020000247343337373739");
                         Object obj;
 
                         try {
