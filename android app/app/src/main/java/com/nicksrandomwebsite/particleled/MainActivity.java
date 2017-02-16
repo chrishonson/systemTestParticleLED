@@ -1,6 +1,5 @@
 package com.nicksrandomwebsite.particleled;
 
-import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +9,8 @@ LoginFragment.OnFragmentInteractionListener{
     private static final String TAG = MainActivity.class.getName();
 
     @Override
-    public void onLoginSuccess() {
-        goToLedFragment();
+    public void onLoginSuccess(String id) {
+        goToLedFragment(id);
     }
 
     enum FRAGMENT_TAG {
@@ -25,12 +24,12 @@ LoginFragment.OnFragmentInteractionListener{
         if (savedInstanceState == null) {
             goToLoginFragment();
         }else{
-            goToLedFragment();
+//            goToLedFragment(id);
         }
     }
 
-    private void goToLedFragment() {
-        LedFragment ledFragment = LedFragment.newInstance(null, null);
+    private void goToLedFragment(String id) {
+        LedFragment ledFragment = LedFragment.newInstance(id, null);
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(FRAGMENT_TAG.LED.ordinal(), ledFragment).commit();
     }

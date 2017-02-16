@@ -70,6 +70,10 @@ public class LoginFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         getActivity().setContentView(R.layout.fragment_login);
+
+        ((EditText) getActivity().findViewById(R.id.email)).setText("chrishonson@gmail.com");
+        ((EditText) getActivity().findViewById(R.id.password)).setText("gearbox9");
+
         getActivity().findViewById(R.id.login_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,34 +91,34 @@ public class LoginFragment extends Fragment {
                         mDevice = sparkCloud.getDevice("280020000247343337373739");
                         Object obj;
 
-                        try {
-                            obj = mDevice.getVariable("analogvalue");
-                            Log.d("BANANA", "analogvalue: " + obj);
-                        } catch (ParticleDevice.VariableDoesNotExistException e) {
-                            Toaster.s(getActivity(), "Error reading variable");
-                            obj = -1;
-                        }
-
-                        try {
-                            String strVariable = mDevice.getStringVariable("stringvalue");
-                            Log.d("BANANA", "stringvalue: " + strVariable);
-                        } catch (ParticleDevice.VariableDoesNotExistException e) {
-                            Toaster.s(getActivity(), "Error reading variable");
-                        }
-
-                        try {
-                            double dVariable = mDevice.getDoubleVariable("doublevalue");
-                            Log.d("BANANA", "doublevalue: " + dVariable);
-                        } catch (ParticleDevice.VariableDoesNotExistException e) {
-                            Toaster.s(getActivity(), "Error reading variable");
-                        }
-
-                        try {
-                            int intVariable = mDevice.getIntVariable("analogvalue");
-                            Log.d("BANANA", "int analogvalue: " + intVariable);
-                        } catch (ParticleDevice.VariableDoesNotExistException e) {
-                            Toaster.s(getActivity(), "Error reading variable");
-                        }
+//                        try {
+//                            obj = mDevice.getVariable("analogvalue");
+//                            Log.d("BANANA", "analogvalue: " + obj);
+//                        } catch (ParticleDevice.VariableDoesNotExistException e) {
+//                            Toaster.s(getActivity(), "Error reading variable");
+//                            obj = -1;
+//                        }
+//
+//                        try {
+//                            String strVariable = mDevice.getStringVariable("stringvalue");
+//                            Log.d("BANANA", "stringvalue: " + strVariable);
+//                        } catch (ParticleDevice.VariableDoesNotExistException e) {
+//                            Toaster.s(getActivity(), "Error reading variable");
+//                        }
+//
+//                        try {
+//                            double dVariable = mDevice.getDoubleVariable("doublevalue");
+//                            Log.d("BANANA", "doublevalue: " + dVariable);
+//                        } catch (ParticleDevice.VariableDoesNotExistException e) {
+//                            Toaster.s(getActivity(), "Error reading variable");
+//                        }
+//
+//                        try {
+//                            int intVariable = mDevice.getIntVariable("analogvalue");
+//                            Log.d("BANANA", "int analogvalue: " + intVariable);
+//                        } catch (ParticleDevice.VariableDoesNotExistException e) {
+//                            Toaster.s(getActivity(), "Error reading variable");
+//                        }
 
                         return -1;
 
@@ -123,7 +127,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onSuccess(Object value) {
                         if (mListener != null) {
-                            mListener.onLoginSuccess();
+                            mListener.onLoginSuccess(mDevice.getID());
                         }
                     }
 
@@ -176,6 +180,6 @@ public class LoginFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onLoginSuccess();
+        void onLoginSuccess(String id);
     }
 }
