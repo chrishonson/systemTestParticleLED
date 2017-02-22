@@ -27,7 +27,7 @@ public class BluetoothArduino extends Thread {
     private int REQUEST_BLUE_ATIVAR = 10;
     private String robotName;
     private List<String> mMessages = new ArrayList<String>();
-    private String TAG = "BluetoothConnector";
+    private String TAG = "BluetoothArduino";
     private char DELIMITER = '#';
 
     private static BluetoothArduino __blue = null;
